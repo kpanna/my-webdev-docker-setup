@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  node:
+    image: ${NODE_IMAGE:-wodby/node:9}
+    container_name: "${COMPOSE_PROJECT_NAME:-my_project}_node"
+    # Should point to a directory with package.json.
+    working_dir: /var/www/html/web/themes/[YOUR-THEME]/.npm
+    labels:
+      - 'traefik.backend=${COMPOSE_PROJECT_NAME:-my_project}_node'
+      - 'traefik.port=3000'
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=web'
+      - 'traefik.frontend.rule=Host:node.${PROJECT_BASE_URL:-my-project.l}'
+    expose:
+      - "3000"
+    volumes:
+      - ./:/var/www/html:cached
+    command: sh -c 'yarn install && ./node_modules/.bin/gulp watch'
