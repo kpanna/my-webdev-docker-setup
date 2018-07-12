@@ -28,12 +28,13 @@ services:
     image: ${PHP_IMAGE:-wodby/drupal-php:7.1-dev-4.5.0}
     container_name: "${COMPOSE_PROJECT_NAME:-my_project}_php"
     environment:
-      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       DB_HOST: ${DB_HOST:-database}
       DB_USER: ${DB_USER:-drupal}
       DB_PASSWORD: ${DB_PASSWORD-password}
       DB_NAME: ${DB_NAME:-drupal}
       DB_DRIVER: ${DB_DRIVER:-mysql}
+      COMPOSER_AUTH: ${COMPOSER_AUTH:-}
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       PHP_XDEBUG: 1
       PHP_XDEBUG_DEFAULT_ENABLE: 1
       PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
