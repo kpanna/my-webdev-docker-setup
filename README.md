@@ -4,7 +4,7 @@ My Docker based local environment setup for web development
 An ideal Docker based local environment setup not only for Drupal 8 development.
 
 ## One-time only setup
-* Create the "web" network interface which is used to communicate with the containerized services in the host: `docker create web`.
+* Create the "web" network interface which is used to communicate with the containerized services in the host: `docker network create web`.
 * Clone my Traefik configuration from [this](https://github.com/mxr576/my-traefik-docker) repository and start the
 Traefik container with `docker-compose up -d`
 * Install and setup DNSMasq to redirect all request from .l domains to your
